@@ -109,6 +109,19 @@ export function Header({ locale }: { locale: Locale }) {
 
             <LanguageSwitcher locale={locale} />
 
+            {/* ── Membership — حرفه‌ای، طلایی، متمایز ── */}
+            <Link 
+              href={href(locale, "/contact")} 
+              className="header-membership"
+              aria-label={d.nav.membership}
+            >
+              <span className="header-membership-icon">
+                <Icon name="crown" size={16} />
+              </span>
+              <span className="header-membership-label">{d.nav.membership}</span>
+              <span className="header-membership-shine" aria-hidden="true" />
+            </Link>
+
             <Link href={href(locale, "/cart")} className="icon-btn header-cart" aria-label={d.nav.cart}>
               <Icon name="bag" size={19} />
               {mounted && count > 0 && <span className="cart-count tnum">{new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en-US").format(count)}</span>}
@@ -152,7 +165,11 @@ export function Header({ locale }: { locale: Locale }) {
           </ul>
         </nav>
         <div className="drawer-foot">
-          <Link href={href(locale, "/b2b")} className="btn btn-outline btn-block" onClick={() => setDrawerOpen(false)}>
+          <Link href={href(locale, "/contact")} className="btn btn-membership btn-block" onClick={() => setDrawerOpen(false)}>
+            <Icon name="crown" size={16} />
+            <span className="btn-label">{d.nav.joinClub}</span>
+          </Link>
+          <Link href={href(locale, "/b2b")} className="btn btn-outline btn-block" onClick={() => setDrawerOpen(false)} style={{ marginTop: "0.75rem" }}>
             <Icon name="briefcase" size={16} />
             <span className="btn-label">{d.nav.b2b}</span>
           </Link>

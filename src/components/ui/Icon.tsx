@@ -10,7 +10,8 @@ export type IconName =
   | "copy" | "eye" | "filters" | "instagram" | "link" | "mail"
   | "phone" | "pin" | "clock" | "shield" | "truck" | "card"
   | "spark" | "book" | "store" | "briefcase" | "external" | "palette"
-  | "ruler" | "layers" | "grid" | "quote";
+  | "ruler" | "layers" | "grid" | "quote"
+  | "crown" | "user-plus" | "users" | "gift";
 
 const paths: Record<IconName, JSX.Element> = {
   search: <><circle cx="11" cy="11" r="7" /><path d="m20 20-3.2-3.2" /></>,
@@ -52,6 +53,10 @@ const paths: Record<IconName, JSX.Element> = {
   layers: <><path d="m12 3.5 9 5-9 5-9-5 9-5Z" /><path d="m3.8 13 8.2 4.5 8.2-4.5" /></>,
   grid: <><rect x="4" y="4" width="7" height="7" rx="1.5" /><rect x="13" y="4" width="7" height="7" rx="1.5" /><rect x="4" y="13" width="7" height="7" rx="1.5" /><rect x="13" y="13" width="7" height="7" rx="1.5" /></>,
   quote: <path d="M5 15.5V11c0-3 1.8-5 4.5-5.6m9 10.1V11c0-3-1.8-5-4.5-5.6" strokeLinecap="round" />,
+  crown: <><path d="M3 7.5 5.5 17a2 2 0 0 0 2 1.5h9a2 2 0 0 0 2-1.5L21 7.5" /><path d="M3 7.5 6 4l3 3.5L12 4l3 3.5L18 4l3 3.5" /><path d="M8 18.5a4 4 0 0 0 8 0" /></>,
+  "user-plus": <><circle cx="9.5" cy="8.5" r="3.2" /><path d="M2.5 20c1.1-3 3.5-4.6 7-4.6s5.9 1.6 7 4.6" /><path d="M16 8.5h4M18 6.5v4" /></>,
+  users: <><circle cx="9" cy="8.5" r="3" /><circle cx="16.5" cy="9" r="2.3" /><path d="M2.5 20c1-2.7 3.1-4.2 6.5-4.2 1.1 0 2.1.2 3 .5" /><path d="M13.2 18.2c.6.3 1.4.5 2.3.5 2.6 0 4.3-1 5-3" /></>,
+  gift: <><rect x="3" y="8.5" width="18" height="11" rx="2" /><path d="M3 12h18M12 8.5V19.5" /><path d="M12 8.5a3 3 0 0 0-3-3 3 3 0 0 0 3 3Zm0 0a3 3 0 0 1 3-3 3 3 0 0 1-3 3Z" /></>,
 };
 
 export function Icon({

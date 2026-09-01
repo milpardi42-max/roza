@@ -58,10 +58,93 @@
 .nav-caret { transition: transform var(--dur-2) var(--ease-out); }
 .primary-nav li:has(> .mega-open-parent) .nav-caret { transform: rotate(180deg); }
 
-.header-actions { display: flex; align-items: center; gap: var(--space-1); margin-inline-start: auto; }
-.header-cta { margin-inline-start: var(--space-2); }
+.header-actions { display: flex; align-items: center; gap: var(--space-2); margin-inline-start: auto; }
+.header-cta { margin-inline-start: var(--space-1); }
 
 .header-cart { position: relative; }
+
+/* ══ Membership — حرفه‌ای، پریمیوم، طلایی ══════════════════ */
+.header-membership {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fffdf7, #f6ecd6);
+  border: 1.5px solid #e6d4ac;
+  color: #7a5a1a;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: all 0.28s cubic-bezier(0.22, 0.61, 0.21, 1);
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 2px 10px -6px rgb(180 134 45 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.9);
+}
+html[lang="fa"] .header-membership { font-family: var(--font-fa); letter-spacing: 0; }
+
+.header-membership-icon {
+  display: grid;
+  place-items: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #cfa448, #a8822c);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px -4px rgb(180 134 45 / 0.6);
+  transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.21, 1);
+}
+
+.header-membership-label { position: relative; z-index: 1; }
+
+.header-membership-shine {
+  position: absolute;
+  inset-block: -40%;
+  inset-inline-start: -70%;
+  inline-size: 55%;
+  background: linear-gradient(100deg, transparent, rgb(255 248 222 / 0.75) 50%, transparent);
+  transform: translateX(0) skewX(-18deg);
+  z-index: 0;
+  pointer-events: none;
+}
+html[dir="rtl"] .header-membership-shine { inset-inline-start: auto; inset-inline-end: -70%; }
+
+.header-membership:hover {
+  background: linear-gradient(180deg, #cfa448, var(--accent-2) 55%, #a8822c);
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-1.5px);
+  box-shadow: 0 12px 28px -10px rgb(180 134 45 / 0.65), 0 2px 8px -4px rgb(180 134 45 / 0.4);
+}
+.header-membership:hover .header-membership-icon {
+  background: #fff;
+  color: #a8822c;
+  transform: rotate(-12deg) scale(1.08);
+}
+.header-membership:hover .header-membership-shine {
+  animation: hxShine 0.9s cubic-bezier(0.3, 0.6, 0.3, 1) forwards;
+}
+html[dir="rtl"] .header-membership:hover .header-membership-shine { animation-name: hxShineRtl; }
+
+.header-membership:active { transform: translateY(0) scale(0.98); }
+
+/* btn-membership برای دراور موبایل */
+.btn-membership {
+  background: linear-gradient(180deg, #cfa448, #c0973f 55%, #a8822c);
+  color: #fff;
+  border: 1.5px solid transparent;
+  box-shadow: 0 12px 28px -10px rgb(180 134 45 / 0.6);
+  font-weight: 700;
+}
+.btn-membership:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px -12px rgb(180 134 45 / 0.7);
+}
+.btn-membership:active { transform: translateY(0); }
 .cart-count {
   position: absolute;
   inset-block-start: 0.1rem;
@@ -362,12 +445,18 @@ html[dir="rtl"] .drawer { transform: translateX(105%); }
 .newsletter-done { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--success); font-weight: var(--weight-medium); }
 .newsletter-compact.newsletter-done { color: #9ed9ba; }
 
+@media (max-width: 1200px) {
+  .header-membership-label { display: none; }
+  .header-membership { padding: 0.5rem; }
+  .header-membership-icon { inline-size: 2rem; block-size: 2rem; }
+}
 @media (max-width: 1024px) {
   .primary-nav { display: none; }
   .header-burger { display: inline-grid; }
   .header-inner { gap: var(--space-3); }
   .header-cta { display: none; }
   .header-account { display: none; }
+  .header-membership { display: none; } /* در موبایل از دراور استفاده می‌شود */
   .footer-main { grid-template-columns: 1fr; gap: var(--space-10); }
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
 }
