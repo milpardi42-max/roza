@@ -1,0 +1,91 @@
+/* ─────────────────────────────────────────────────────────────
+   Rezi Atelier Font Faces
+   fa-beirut: primary Persian family (Regular → ExtraBold)
+   fa-beirut-display: display accent (large Persian headlines)
+   Manrope: complementary Latin grotesque
+   Files live in /public/fonts — swap the @font-face src here to
+   change families platform-wide (single source of truth).
+────────────────────────────────────────────────────────────── */
+
+/* Persian — fa-beirut */
+@font-face {
+  font-family: "fa-beirut";
+  src: url("/fonts/fa-beirut-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "fa-beirut";
+  src: url("/fonts/fa-beirut-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "fa-beirut";
+  src: url("/fonts/fa-beirut-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "fa-beirut";
+  src: url("/fonts/fa-beirut-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "fa-beirut";
+  src: url("/fonts/fa-beirut-800.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Persian display accent */
+@font-face {
+  font-family: "fa-beirut-display";
+  src: url("/fonts/fa-beirut-display.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Latin — Manrope */
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

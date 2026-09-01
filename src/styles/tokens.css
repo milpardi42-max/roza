@@ -1,0 +1,154 @@
+/* ─────────────────────────────────────────────────────────────
+   Rezi Atelier Design Tokens — single source of truth
+   WHITE editorial canvas · warm ivory surfaces · deep copper
+   Palette direction: warm & luxurious (cream / beige / gold / copper)
+────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Color: semantic ─────────────────────────────────────── */
+  --background:            #ffffff;
+  --background-secondary:  #f9f6f1;   /* warm ivory          */
+  --background-tertiary:   #f4eee6;   /* light beige         */
+  --surface:               #ffffff;
+  --surface-elevated:      #ffffff;
+  --surface-sunken:        #fbf9f5;
+
+  --foreground:            #241d16;   /* warm espresso ink   */
+  --foreground-secondary:  #5c5145;   /* warm taupe          */
+  --foreground-tertiary:   #7d7163;
+  --muted:                 #a89a89;
+
+  --border:                #ece4d8;
+  --border-strong:         #d9cdbb;
+
+  --primary:               #2e4a5c;   /* warm deep petrol-slate */
+  --primary-hover:         #234052;
+  --primary-soft:          #f1efe9;
+  --primary-fg:            #ffffff;
+
+  --accent:                #a05d24;   /* deep copper          */
+  --accent-hover:          #874d1b;
+  --accent-soft:           #f8ecdd;
+  --accent-border:         #ecd9bd;
+  --accent-fg:             #ffffff;
+  --accent-2:              #c0973f;   /* warm gold (badges/highlights) */
+
+  --success:               #157a4e;
+  --success-soft:          #e8f5ee;
+  --warning:               #b54708;
+  --warning-soft:          #fff5e6;
+  --error:                 #b42318;
+  --error-soft:            #fef3f2;
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --font-fa:        "fa-beirut", "Manrope", system-ui, sans-serif;
+  --font-fa-display:"fa-beirut-display", "fa-beirut", "Manrope", sans-serif;
+  --font-en:        "Manrope", "fa-beirut", system-ui, sans-serif;
+  --font-body:      var(--font-en);       /* overridden per-[lang] */
+  --font-display:   var(--font-en);
+
+  --text-xs:        0.75rem;
+  --text-sm:        0.8125rem;
+  --text-base:      0.9375rem;
+  --text-md:        1.0625rem;
+  --text-lg:        1.25rem;
+  --text-xl:        1.5rem;
+  --text-2xl:       1.875rem;
+  --text-3xl:       2.375rem;
+  --text-4xl:       clamp(2.5rem, 4.5vw, 3.5rem);
+  --text-5xl:       clamp(3rem, 6vw, 4.75rem);
+  --text-hero:      clamp(2.75rem, 6.8vw, 5.5rem);
+
+  --leading-tight:  1.15;
+  --leading-snug:   1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed:1.8;   /* Persian body default */
+  --leading-loose:  2;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+  --weight-extrabold:800;
+
+  /* ── Spacing (4px base) ──────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ── Radius ──────────────────────────────────────────────── */
+  --radius-xs:  0.375rem;
+  --radius-sm:  0.625rem;
+  --radius-md:  0.875rem;
+  --radius-lg:  1.25rem;
+  --radius-xl:  1.75rem;
+  --radius-2xl: 2.25rem;
+  --radius-pill: 999px;
+
+  /* ── Shadow (warm-tinted bloom — used sparingly) ─────────── */
+  --shadow-soft:
+    0 1px 2px 0 rgb(56 40 20 / 0.04),
+    0 4px 16px -8px rgb(56 40 20 / 0.08);
+  --shadow-medium:
+    0 4px 8px -4px rgb(56 40 20 / 0.06),
+    0 12px 32px -12px rgb(56 40 20 / 0.14);
+  --shadow-elevated:
+    0 8px 16px -8px rgb(56 40 20 / 0.10),
+    0 24px 56px -16px rgb(56 40 20 / 0.22);
+  --shadow-glow:
+    0 0 0 1px rgb(160 93 36 / 0.14),
+    0 12px 40px -8px rgb(160 93 36 / 0.26);
+
+  /* ── Blur / glass accents (header floats, hero badges) ───── */
+  --blur-glass: saturate(1.6) blur(14px);
+  --glass-bg:   rgb(255 255 255 / 0.72);
+  --glass-border: rgb(255 255 255 / 0.55);
+
+  /* ── Gradients ───────────────────────────────────────────── */
+  --gradient-copper: linear-gradient(120deg, #cd9550 0%, #a05d24 50%, #874d1b 100%);
+  --gradient-ink:    linear-gradient(160deg, #2a2118 0%, #2e4a5c 100%);
+  --gradient-wash:   linear-gradient(180deg, rgb(36 29 22 / 0) 30%, rgb(36 29 22 / 0.55) 100%);
+
+  /* ── Motion ──────────────────────────────────────────────── */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 180ms;
+  --dur-2: 340ms;
+  --dur-3: 640ms;
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  --container: 80rem;            /* 1280px */
+  --container-narrow: 68rem;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --header-height: 4.5rem;
+  --header-height-scrolled: 4rem;
+
+  --z-header:  80;
+  --z-overlay: 90;
+  --z-modal:   100;
+  --z-toast:   110;
+}
+
+/* Direction-aware typography defaults */
+html[lang="fa"] {
+  --font-body: var(--font-fa);
+  --font-display: var(--font-fa);
+}
+html[lang="en"] {
+  --font-body: var(--font-en);
+  --font-display: var(--font-en);
+}
+
+@media (max-width: 640px) {
+  :root { --header-height: 4rem; }
+}

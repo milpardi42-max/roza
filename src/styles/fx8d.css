@@ -1,0 +1,132 @@
+/* ══════════════════════════════════════════════════════════════
+   fx8d.css — افکت 8D سراسری تصاویر (FXImg)
+   tilt سه‌بعدی · پارالاکس اسکرول · برق نور · زوم — حالت دراماتیک
+   ══════════════════════════════════════════════════════════════ */
+
+.fx8 {
+  display: block;
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+  perspective: 950px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  isolation: isolate;
+
+  --fx-rx: 0deg;
+  --fx-ry: 0deg;
+  --fx-py: 0%;
+  --fx-mx: 50%;
+  --fx-my: 50%;
+  --fx-zoom: 1.08;
+}
+
+/* لایهٔ تصویر: پارالاکس (متغیر --fx-py توسط JS ست می‌شود) + زوم هاور */
+.fx8 > img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  transform: translate3d(0, var(--fx-py), 0) scale(1);
+  transition:
+    transform 900ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),
+    filter 700ms ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* خودِ wrapper با tilt می‌چرخد */
+.fx8.fx8-on {
+  transform: rotateX(var(--fx-rx)) rotateY(var(--fx-ry));
+  transition: transform 160ms ease-out;
+}
+
+/* زوم و فراتر رفتن از قاب هنگام هاور */
+.fx8.fx8-active > img {
+  transform: translate3d(0, var(--fx-py), 0) scale(var(--fx-zoom));
+  filter: saturate(1.08) contrast(1.03);
+}
+
+/* ── برق نور دنبال‌کنندهٔ نشانگر ─────────────────────────────── */
+.fx8::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(
+    240px circle at var(--fx-mx) var(--fx-my),
+    rgba(255, 255, 255, 0.42),
+    rgba(255, 255, 255, 0.08) 42%,
+    transparent 68%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 380ms ease;
+}
+
+.fx8.fx8-active::before {
+  opacity: 1;
+}
+
+/* ── جاروی نور مورب هنگام ورود ───────────────────────────────── */
+.fx8::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 62%
+  );
+  transform: translateX(135%);
+  opacity: 0;
+}
+
+.fx8.fx8-active::after {
+  animation: fx8-sweep 950ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) 60ms;
+}
+
+@keyframes fx8-sweep {
+  0%   { transform: translateX(135%); opacity: 0; }
+  12%  { opacity: 1; }
+  100% { transform: translateX(-135%); opacity: 0; }
+}
+
+/* سایهٔ عمق — لایه‌ای نرم زیر کادر */
+.fx8.fx8-active {
+  filter: drop-shadow(0 18px 28px rgba(24, 29, 38, 0.22));
+  transition: transform 160ms ease-out, filter 420ms ease;
+}
+
+/* تصاویر خیلی کوچک: بدون tilt/zoom — فقط برق ملایم */
+.fx8.fx8-sm {
+  perspective: none;
+}
+.fx8.fx8-sm > img {
+  transform: none !important;
+  will-change: auto;
+}
+.fx8.fx8-sm::after { display: none; }
+.fx8.fx8-sm::before {
+  background: radial-gradient(
+    90px circle at var(--fx-mx) var(--fx-my),
+    rgba(255, 255, 255, 0.28),
+    transparent 70%
+  );
+}
+
+/* احترام به کاهش حرکت */
+@media (prefers-reduced-motion: reduce) {
+  .fx8,
+  .fx8 > img,
+  .fx8::before,
+  .fx8::after {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    opacity: 0 !important;
+  }
+}

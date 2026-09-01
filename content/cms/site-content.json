@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "updated": "2026-08-31",
+  "hero": {
+    "fa": {
+      "titleBefore": "ایدهات را پیدا کن،",
+      "titleAccent": "طرحت را",
+      "titleAfter": "خلق کن.",
+      "subtitle": "پترن، پارچه، کاغذ دیواری و آثار دکوراتیو را آنلاین کشف، خرید و عرضه کن.",
+      "ctaPrimary": "ساخت پروفایل فروش",
+      "ctaSecondary": "مشاهده محصولات",
+      "trustCount": "+2K",
+      "trustTitle": "محیطی برای خلاق‌ها",
+      "trustSub": "طراحان لباس، هزاران طرح، هنرمندان و دانشجویان هنر"
+    },
+    "en": {
+      "titleBefore": "Find your ideas,",
+      "titleAccent": "create",
+      "titleAfter": "your design.",
+      "subtitle": "Discover, buy and offer patterns, fabrics, wallpapers and decorative art — all online.",
+      "ctaPrimary": "Build your seller profile",
+      "ctaSecondary": "Browse products",
+      "trustCount": "+2K",
+      "trustTitle": "A home for creators",
+      "trustSub": "Fashion designers, thousands of patterns, artists and art students"
+    }
+  },
+  "marquee": {
+    "fa": [
+      "الگو",
+      "پارچه",
+      "دیوارپوش",
+      "سرامیک",
+      "فرش",
+      "دکور",
+      "چاپ",
+      "بافت"
+    ],
+    "en": [
+      "Pattern",
+      "Textile",
+      "Wallcovering",
+      "Ceramics",
+      "Rugs",
+      "Decor",
+      "Print",
+      "Texture"
+    ]
+  },
+  "pageBanners": {
+    "patterns": {
+      "src": "/assets/images/hero/pages/patterns.jpg",
+      "focus": "50% 45%"
+    },
+    "store": {
+      "src": "/assets/images/hero/pages/store.jpg",
+      "focus": "50% 62%"
+    },
+    "products": {
+      "src": "/assets/images/hero/pages/products.jpg",
+      "focus": "50% 50%"
+    },
+    "artists": {
+      "src": "/assets/images/hero/pages/artists.jpg",
+      "focus": "50% 42%"
+    },
+    "education": {
+      "src": "/assets/images/hero/pages/education.jpg",
+      "focus": "50% 50%"
+    },
+    "b2b": {
+      "src": "/assets/images/hero/pages/b2b.jpg",
+      "focus": "50% 50%"
+    },
+    "portfolio": {
+      "src": "/assets/images/hero/pages/portfolio.jpg",
+      "focus": "50% 50%"
+    },
+    "about": {
+      "src": "/assets/images/hero/pages/about.jpg",
+      "focus": "50% 50%"
+    },
+    "contact": {
+      "src": "/assets/images/hero/pages/contact.jpg",
+      "focus": "50% 48%"
+    }
+  }
+}

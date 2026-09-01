@@ -1,0 +1,94 @@
+/* ─────────────────────────────────────────────────────────────
+   Motion system — fast, elegant, subtle, performant
+   transform / opacity / filter only · honors reduced motion
+────────────────────────────────────────────────────────────── */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes blur-in {
+  from { opacity: 0; filter: blur(14px); transform: scale(1.03); }
+  to   { opacity: 1; filter: blur(0);    transform: none; }
+}
+@keyframes scale-fade {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(2rem); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-image {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-0.5rem); }
+}
+@keyframes spin {
+  to { transform: rotate(1turn); }
+}
+
+/* Scroll-reveal: JS toggles .is-revealed when in view */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.75rem);
+  filter: blur(6px);
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-out),
+    filter var(--dur-3) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+  will-change: opacity, transform, filter;
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.reveal-image {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 900ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.reveal-image.is-revealed { clip-path: inset(0 0 0 0); }
+
+/* Hover micro-interactions */
+.hover-lift {
+  transition: transform var(--dur-2) var(--ease-out),
+              box-shadow var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.img-zoom { overflow: hidden; }
+.img-zoom img, .img-zoom .zoomable {
+  transition: transform 800ms var(--ease-out);
+}
+.img-zoom:hover img, .img-zoom:hover .zoomable { transform: scale(1.05); }
+
+/* Reduced motion — calm everything down */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .reveal, .reveal-image { opacity: 1; transform: none; filter: none; clip-path: none; }
+}
