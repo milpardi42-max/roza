@@ -159,12 +159,12 @@ html[lang="en"] .hero-title-accent { font-style: italic; font-weight: var(--weig
 .hero-copy > *:nth-child(5) { animation-delay: 380ms; }
 .hero-visual { animation: blur-in 900ms 200ms var(--ease-out) both; }
 
-/* marquee */
+/* marquee — FIXED: more spacing after features */
 .hero-marquee {
   border-block: 1px solid var(--border);
   background: var(--background-secondary);
   overflow: clip;
-  margin-block-start: clamp(2rem, 4vw, 3.5rem);
+  margin-block-start: clamp(1.5rem, 3vw, 2.5rem);
 }
 .hero-marquee-track {
   display: flex;
@@ -456,13 +456,19 @@ html[dir="ltr"] .exclusive-art::after { background: linear-gradient(to right, rg
   .styles-home-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ═══ Hero — collage edition (mock «ایدهات را پیدا کن») ═══ */
-.hx { padding-block-start: var(--space-8); overflow: clip; }
+/* ═══ Hero — collage edition (mock «ایدهات را پیدا کن») — FIXED OVERLAP ═══ */
+.hx { 
+  padding-block-start: var(--space-8); 
+  padding-block-end: var(--space-6);
+  overflow: clip; 
+  position: relative;
+}
 .hx-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
-  gap: var(--space-10);
+  align-items: start;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-block-end: var(--space-8);
 }
 
 /* — copy — */
@@ -497,8 +503,17 @@ html[lang="en"] .hx-accent { font-style: italic; font-weight: var(--weight-bold)
 }
 .hx-btn-gold.btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
-/* — trust row — */
-.hx-trust { display: flex; align-items: center; gap: var(--space-4); margin-block-start: var(--space-8); }
+/* — trust row — FIXED: more spacing from CTAs, avoid overlap with collage */
+.hx-trust { 
+  display: flex; 
+  align-items: center; 
+  gap: var(--space-4); 
+  margin-block-start: var(--space-10);
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--border-soft, #f0e6d6);
+  position: relative;
+  z-index: 3;
+}
 .hx-avatars { display: flex; align-items: center; }
 .hx-avatar {
   inline-size: 2.75rem; block-size: 2.75rem;
@@ -526,8 +541,15 @@ html[lang="en"] .hx-accent { font-style: italic; font-weight: var(--weight-bold)
 .hx-trust-txt strong { color: var(--fg-primary); font-weight: var(--weight-bold); }
 .hx-trust-txt span { color: var(--fg-tertiary); font-size: var(--text-sm); }
 
-/* — collage visual — */
-.hx-visual { position: relative; aspect-ratio: 1.226 / 1; min-block-size: 30rem; }
+/* — collage visual — FIXED: reduced height + clear separation */
+.hx-visual { 
+  position: relative; 
+  aspect-ratio: 1.226 / 1; 
+  min-block-size: 28rem;
+  max-block-size: 36rem;
+  margin-block-start: var(--space-6);
+  isolation: isolate;
+}
 .hx-dots {
   position: absolute; inset-inline-start: 10%; inset-block-start: 8%;
   inline-size: 30%; block-size: 30%;
@@ -567,8 +589,15 @@ html[lang="en"] .hx-accent { font-style: italic; font-weight: var(--weight-bold)
 .hx-star-2 { inset-inline-start: 35%; inset-block-start: 82%; animation: hxFloat 6s ease-in-out 0.8s infinite; }
 @keyframes hxFloat { 50% { transform: translateY(-9px) scale(1.06); } }
 
-/* — features bar — */
-.hx-features-wrap { margin-block-start: var(--space-9); padding-block-end: var(--space-3); }
+/* — features bar — FIXED: moved down to avoid overlap with collage images */
+.hx-features-wrap { 
+  margin-block-start: clamp(3rem, 6vw, 5rem); 
+  padding-block-start: var(--space-4);
+  padding-block-end: var(--space-6);
+  position: relative;
+  z-index: 5;
+  clear: both;
+}
 .hx-features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -604,9 +633,10 @@ html[lang="en"] .hx-accent { font-style: italic; font-weight: var(--weight-bold)
   .hx-visual { min-block-size: 24rem; }
 }
 @media (max-width: 860px) {
-  .hx-grid { grid-template-columns: 1fr; }
+  .hx-grid { grid-template-columns: 1fr; padding-block-end: var(--space-4); }
   .hx-subtitle { max-width: none; }
-  .hx-visual { min-block-size: 19rem; }
+  .hx-visual { min-block-size: 19rem; margin-block-start: var(--space-4); margin-block-end: var(--space-6); }
+  .hx-features-wrap { margin-block-start: var(--space-8); }
   .hx-features { grid-template-columns: 1fr; gap: 0; padding: var(--space-3) var(--space-5); }
   .hx-feat { padding-block: var(--space-3); }
   .hx-feat + .hx-feat { border-inline-start: 0; border-block-start: var(--border); }
