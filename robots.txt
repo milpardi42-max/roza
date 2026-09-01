@@ -5,4 +5,4 @@ Disallow: /en/cart
 Disallow: /fa/checkout
 Disallow: /en/checkout
 
-Sitemap: https://milpardi42-max.github.io/roza/sitemap.xml
+Sitemap: https://reziatelier.com/sitemap.xml
