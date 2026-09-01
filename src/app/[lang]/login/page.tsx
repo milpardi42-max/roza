@@ -8,6 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { PageHeroArt } from "@/components/ui/PageHeroArt";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { PatternArt } from "@/components/ui/PatternArt";
+import { Suspense } from "react";
 
 export function generateStaticParams(): Array<{ lang: Locale }> {
   return [{ lang: "fa" }, { lang: "en" }];
@@ -25,16 +26,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   });
 }
 
-export default async function LoginPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ lang: Locale }>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-}) {
+export default async function LoginPage({ params }: { params: Promise<{ lang: Locale }> }) {
   const { lang } = await params;
-  const sp = searchParams ? await searchParams : {};
-  const registered = sp?.registered === "1" || sp?.registered === "true";
   const locale = lang;
   const d = getDictionary(locale);
   const isFa = locale === "fa";
@@ -59,7 +52,9 @@ export default async function LoginPage({
                 <h2>{isFa ? "ورود" : "Login"}</h2>
                 <p>{isFa ? "ایمیل و رمز خود را وارد کنید" : "Enter your email and password"}</p>
               </div>
-              <LoginForm locale={locale} registered={registered} />
+              <Suspense fallback={<div style={{ blockSize: "200px" }} />}>
+                <LoginForm locale={locale} />
+              </Suspense>
             </div>
           </Reveal>
         </div>

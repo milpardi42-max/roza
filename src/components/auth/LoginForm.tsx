@@ -1,16 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { Locale } from "@/lib/types";
 import { href } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { useUser } from "./UserContext";
 
-export function LoginForm({ locale, registered }: { locale: Locale; registered?: boolean }) {
+function LoginFormInner({ locale }: { locale: Locale }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { login, isLoggedIn } = useUser();
   const isFa = locale === "fa";
+  const registered = searchParams.get("registered") === "1";
 
   const [values, setValues] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState<string[]>([]);
@@ -116,5 +118,13 @@ export function LoginForm({ locale, registered }: { locale: Locale; registered?:
         .auth-demo-text { font-size: var(--text-xs); color: var(--fg-tertiary); line-height: 1.7; }
       `}</style>
     </form>
+  );
+}
+
+export function LoginForm({ locale }: { locale: Locale }) {
+  return (
+    <Suspense fallback={<div className="auth-form"><div className="skeleton" style={{ blockSize: "200px" }} /></div>}>
+      <LoginFormInner locale={locale} />
+    </Suspense>
   );
 }
