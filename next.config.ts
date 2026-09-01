@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
   basePath: isGithubPages ? `/${repoName}` : undefined,
   assetPrefix: isGithubPages ? `/${repoName}/` : undefined,
   trailingSlash: isGithubPages ? true : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? `/${repoName}` : "",
+  },
   images: {
     unoptimized: isGithubPages ? true : false,
     formats: ["image/avif", "image/webp"],

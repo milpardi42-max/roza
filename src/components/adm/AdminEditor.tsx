@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
+import { asset } from "@/lib/paths";
 
 type HeroTexts = {
   titleBefore: string; titleAccent: string; titleAfter: string;
@@ -144,7 +145,7 @@ export function AdminEditor({ initial, missing }: { initial: SiteContent; missin
         </div>
         <div className="adm-banner">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={data.pageBanners[bannersPage]?.src} alt="" />
+          <img src={asset(data.pageBanners[bannersPage]?.src ?? "")} alt="" />
           <div>
             <label className="adm-wide">
               <span>فایل عکس</span>

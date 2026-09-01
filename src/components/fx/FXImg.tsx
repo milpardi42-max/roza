@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { asset } from "@/lib/paths";
 
 
 /**
@@ -98,6 +99,7 @@ export default function FXImg({
   tilt = 10,
   className = "",
   style,
+  src,
   ...rest
 }: ImgProps) {
   const wrapRef = useRef<HTMLSpanElement>(null);
@@ -165,9 +167,11 @@ export default function FXImg({
     [style, zoom]
   );
 
+  const resolvedSrc = typeof src === "string" ? asset(src) : (src as any);
+
   if (!fx) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img ref={imgRef} className={className} style={style} {...rest} />;
+    return <img ref={imgRef} className={className} style={style} src={resolvedSrc} {...rest} />;
   }
 
   return (
@@ -180,7 +184,7 @@ export default function FXImg({
       onPointerLeave={onLeave}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img ref={imgRef} className={className} {...rest} />
+      <img ref={imgRef} className={className} src={resolvedSrc} {...rest} />
     </span>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { Icon } from "@/components/ui/Icon";
+import { asset } from "@/lib/paths";
 
 const PANELS = [
   { src: "c1-pink-floral.jpg", cls: "hx-p-1", depth: 10 },
@@ -155,7 +156,7 @@ export function HeroCollageFX() {
           suppressHydrationWarning
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`/assets/images/hero/collage/${p.src}`} alt="" draggable={false} />
+          <img src={asset(`/assets/images/hero/collage/${p.src}`)} alt="" draggable={false} />
         </figure>
       ))}
       <button type="button" className="hx-badge hx-badge-fx" onClick={burst} aria-label="جرقهٔ طلایی">

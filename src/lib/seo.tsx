@@ -26,7 +26,12 @@ export function seo({
   type?: "website" | "article" | "product";
 }): Metadata {
   const url = `${BASE_URL}/${locale}${path === "/" ? "" : path}`;
-  const ogImage = image ?? "/assets/brand/og-default.jpg";
+  const resolveOg = (p: string) => {
+    if (p.startsWith("http://") || p.startsWith("https://")) return p;
+    if (p.startsWith("/")) return `${BASE_URL}${p}`;
+    return p;
+  };
+  const ogImage = resolveOg(image ?? "/assets/brand/og-default.jpg");
   const fullTitle = title.includes(SITE[locale].suffix)
     ? title
     : `${title} — ${SITE[locale].suffix}`;
