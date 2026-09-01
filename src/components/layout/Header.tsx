@@ -10,9 +10,11 @@ import { primaryNav, secondaryNav } from "@/lib/data/navigation";
 import { Logo } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/Icon";
 import { useCommerce } from "@/components/commerce/CommerceContext";
+import { useUser } from "@/components/auth/UserContext";
 import { MegaMenu } from "./MegaMenu";
 import { SearchOverlay } from "./SearchOverlay";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { asset } from "@/lib/paths";
 
 export function Header({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
@@ -23,6 +25,7 @@ export function Header({ locale }: { locale: Locale }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { count, mounted } = useCommerce();
+  const { user, isLoggedIn, mounted: userMounted } = useUser();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -109,26 +112,34 @@ export function Header({ locale }: { locale: Locale }) {
 
             <LanguageSwitcher locale={locale} />
 
-            {/* ── Membership — حرفه‌ای، طلایی، متمایز ── */}
-            <Link 
-              href={href(locale, "/contact")} 
-              className="header-membership"
-              aria-label={d.nav.membership}
-            >
-              <span className="header-membership-icon">
-                <Icon name="crown" size={16} />
-              </span>
-              <span className="header-membership-label">{d.nav.membership}</span>
-              <span className="header-membership-shine" aria-hidden="true" />
-            </Link>
+            {/* ── Membership / Profile — حرفه‌ای ── */}
+            {userMounted && isLoggedIn && user ? (
+              <Link 
+                href={href(locale, "/profile")} 
+                className="header-profile"
+                aria-label={d.nav.account}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={asset(user.avatar || "/assets/images/artists/maryam-rad.jpg")} alt={user.name} className="header-profile-avatar" />
+                <span className="header-profile-name">{user.name.split(" ")[0]}</span>
+              </Link>
+            ) : (
+              <Link 
+                href={href(locale, "/membership")} 
+                className="header-membership"
+                aria-label={d.nav.membership}
+              >
+                <span className="header-membership-icon">
+                  <Icon name="crown" size={16} />
+                </span>
+                <span className="header-membership-label">{d.nav.membership}</span>
+                <span className="header-membership-shine" aria-hidden="true" />
+              </Link>
+            )}
 
             <Link href={href(locale, "/cart")} className="icon-btn header-cart" aria-label={d.nav.cart}>
               <Icon name="bag" size={19} />
               {mounted && count > 0 && <span className="cart-count tnum">{new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en-US").format(count)}</span>}
-            </Link>
-
-            <Link href={href(locale, "/contact")} className="icon-btn header-account" aria-label={d.nav.account}>
-              <Icon name="user" size={19} />
             </Link>
 
             <Link href={href(locale, "/store")} className="btn btn-accent btn-sm header-cta">
@@ -165,10 +176,18 @@ export function Header({ locale }: { locale: Locale }) {
           </ul>
         </nav>
         <div className="drawer-foot">
-          <Link href={href(locale, "/contact")} className="btn btn-membership btn-block" onClick={() => setDrawerOpen(false)}>
-            <Icon name="crown" size={16} />
-            <span className="btn-label">{d.nav.joinClub}</span>
-          </Link>
+          {isLoggedIn && user ? (
+            <Link href={href(locale, "/profile")} className="btn btn-membership btn-block" onClick={() => setDrawerOpen(false)}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={asset(user.avatar || "/assets/images/artists/maryam-rad.jpg")} alt="" style={{ inlineSize: "1.5rem", blockSize: "1.5rem", borderRadius: "50%" }} />
+              <span className="btn-label">{user.name}</span>
+            </Link>
+          ) : (
+            <Link href={href(locale, "/membership")} className="btn btn-membership btn-block" onClick={() => setDrawerOpen(false)}>
+              <Icon name="crown" size={16} />
+              <span className="btn-label">{d.nav.joinClub}</span>
+            </Link>
+          )}
           <Link href={href(locale, "/b2b")} className="btn btn-outline btn-block" onClick={() => setDrawerOpen(false)} style={{ marginTop: "0.75rem" }}>
             <Icon name="briefcase" size={16} />
             <span className="btn-label">{d.nav.b2b}</span>

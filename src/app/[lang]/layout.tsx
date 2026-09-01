@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CommerceProvider } from "@/components/commerce/CommerceContext";
 import { QuickViewProvider } from "@/components/commerce/QuickView";
+import { UserProvider } from "@/components/auth/UserContext";
 import { JsonLd } from "@/lib/seo";
 import { asset } from "@/lib/paths";
 import { BASE_URL } from "@/lib/seo";
@@ -64,11 +65,13 @@ export default async function LocaleLayout({
           addedLabel={locale === "fa" ? "به سبد افزوده شد" : "added to cart"}
           savedLabel={locale === "fa" ? "برای بعد ذخیره شد" : "saved for later"}
         >
-          <QuickViewProvider locale={locale}>
-            <Header locale={locale} />
-            <main id="main">{children}</main>
-            <Footer locale={locale} />
-          </QuickViewProvider>
+          <UserProvider>
+            <QuickViewProvider locale={locale}>
+              <Header locale={locale} />
+              <main id="main">{children}</main>
+              <Footer locale={locale} />
+            </QuickViewProvider>
+          </UserProvider>
         </CommerceProvider>
         <JsonLd data={orgLd} />
       </body>

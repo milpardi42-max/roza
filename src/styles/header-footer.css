@@ -131,6 +131,41 @@ html[dir="rtl"] .header-membership:hover .header-membership-shine { animation-na
 
 .header-membership:active { transform: translateY(0) scale(0.98); }
 
+.header-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1.5px solid var(--border, #e6d4ac);
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px -6px rgb(0 0 0 / 0.15);
+}
+.header-profile:hover {
+  border-color: #c0973f;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgb(0 0 0 / 0.15);
+}
+.header-profile-avatar {
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f6ecd6;
+}
+.header-profile-name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--fg-primary);
+  max-inline-size: 6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html[dir="rtl"] .header-profile { padding: 0.3rem 0.3rem 0.3rem 0.8rem; }
+
 /* btn-membership برای دراور موبایل */
 .btn-membership {
   background: linear-gradient(180deg, #cfa448, #c0973f 55%, #a8822c);
