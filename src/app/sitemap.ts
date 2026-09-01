@@ -6,6 +6,8 @@ import { products } from "@/lib/data/products";
 import { artists } from "@/lib/data/artists";
 import { portfolios, categories, collections, education } from "@/lib/data/catalog";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const staticPaths = [

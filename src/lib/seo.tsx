@@ -6,7 +6,9 @@ const SITE = {
   en: { name: "Rezi Atelier | Creative Pattern Marketplace", suffix: "Rezi Atelier" },
 };
 
-export const BASE_URL = "https://reziatelier.com";
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://reziatelier.com";
 
 export function seo({
   locale,
